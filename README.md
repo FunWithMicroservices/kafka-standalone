@@ -34,7 +34,7 @@ docker-compose exec workshop-kafka-standalone-kafka-broker  \
 ```
 
 Create Topic
-```
+```bash
 docker-compose exec workshop-kafka-standalone-kafka-broker  \
     kafka-topics \
     --create \
@@ -46,7 +46,7 @@ docker-compose exec workshop-kafka-standalone-kafka-broker  \
 ```
 
 Describe Topic
-```
+```bash
 docker-compose exec kafka  \
     kafka-topics \
     --describe \
@@ -63,12 +63,12 @@ Confluent API Doc:
 https://docs.confluent.io/platform/current/schema-registry/develop/using.html
 
 List all registered Schemas
-```
+```bash
 curl -X GET http://{{HOST}}:8081/subjects
 ```
 
 Register new schema
-```
+```bash
 curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" \
 --data '{"schema": "{\"type\":\"record\",\"name\":\"Location\",\"namespace\":\"iot\",\"fields\":[{\"name\":\"car_id\",\"type\":\"string\"},{\"name\":\"lat\",\"type\":\"float\"}, {\"name\":\"long\",\"type\":\"float\"},{\"name\":\"time\",\"type\":\"int\"}]}"}' \
 http://{{HOST}}:8081/subjects/{{TOPIC_NAME}}-value/versions
