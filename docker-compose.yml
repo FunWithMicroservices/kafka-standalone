@@ -51,3 +51,15 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: kafka-schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-broker:9093
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+
+  jmx-exporter:
+    image: sscaling/jmx-prometheus-exporter
+    container_name: workshop-kafka-standalone-kafka-jmx-exporter
+    ports:
+    - 5556:5556
+    environment:
+      CONFIG_YML : "/etc/jmx_exporter/config.yml"
+    volumes:
+    - ./etc/jmx_exporter/config.yml:/etc/jmx_exporter/config.yml
+    depends_on:
+    - kafka-broker

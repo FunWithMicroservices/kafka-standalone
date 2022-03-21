@@ -5,6 +5,7 @@ This Setup includes
 - Zookeeper at Port 2181
 - Kafka (Confluent Image) at Port 9092
 - Schema Registry at Port 8081
+- jmx-exporter for Prometheus
 
 **No Auth is included. All ports are open and any user and any**
 **host can send messages to kafka**
@@ -73,3 +74,14 @@ curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" \
 --data '{"schema": "{\"type\":\"record\",\"name\":\"Location\",\"namespace\":\"iot\",\"fields\":[{\"name\":\"car_id\",\"type\":\"string\"},{\"name\":\"lat\",\"type\":\"float\"}, {\"name\":\"long\",\"type\":\"float\"},{\"name\":\"time\",\"type\":\"int\"}]}"}' \
 http://{{HOST}}:8081/subjects/{{TOPIC_NAME}}-value/versions
 ```
+
+### Monitoring
+
+Monitoring Kafka is like having a shower in hell. This setup is not
+supposed to be fully in production. Monitoring is included for
+getting an idea how it works. It's stolen from following repository:
+https://github.com/streamthoughts/kafka-monitoring-stack-docker-compose
+
+If you like reading something about monitoring and kafka, take a look at
+following article:
+https://newrelic.com/blog/best-practices/new-relic-kafkapocalypse
