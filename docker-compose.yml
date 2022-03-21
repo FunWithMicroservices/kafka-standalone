@@ -15,6 +15,7 @@ services:
     container_name: workshop-kafka-standalone-kafka-broker
     ports:
     - 9092:9092
+    - 9991:9991
     depends_on:
     - zookeeper
     environment:
@@ -37,6 +38,7 @@ services:
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
       CONFLUENT_METRICS_ENABLE: 'false'
       KAFKA_HEAP_OPTS: '-Xmx512M -Xms512M'
+      KAFKA_JMX_PORT: 9991
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
